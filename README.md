@@ -7,12 +7,22 @@ o vanjskim bibliotekama.
 ## Struktura
 
 ```
-index.html      – glavna stranica (semantički HTML, SEO meta oznake, JSON-LD)
-css/style.css   – dizajn (responzivan, pristupačan, animacije)
-js/main.js      – interakcije (mobilni izbornik, reveal animacije, aktivna navigacija)
-robots.txt      – upute za tražilice
-sitemap.xml     – mapa stranice
+index.html                      – Početna
+o-nama/                         – O nama
+vijesti/                        – Vijesti (s filtriranjem po kategorijama)
+studentski-predstavnici/        – Studentski predstavnici
+sastavnice/                     – Sastavnice (fakulteti, akademija, odjeli)
+natjecaji/                      – Natječaji
+udruge/                         – Udruge
+kontakt/                        – Kontakt
+css/style.css                   – dizajn (responzivan, pristupačan, animacije)
+js/main.js                      – interakcije (mobilni izbornik, reveal animacije, filter vijesti)
+robots.txt                      – upute za tražilice
+sitemap.xml                     – mapa svih stranica
 ```
+
+Stranice se generiraju kao statični HTML sa zajedničkim zaglavljem i podnožjem,
+a URL-ovi prate strukturu izvorne stranice (`/vijesti/`, `/natjecaji/`, `/kontakt/`…).
 
 ## Pokretanje
 

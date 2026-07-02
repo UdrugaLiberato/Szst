@@ -5,7 +5,6 @@
   var header = document.querySelector(".site-header");
   var navToggle = document.querySelector(".nav-toggle");
   var navMenu = document.getElementById("nav-menu");
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-menu a"));
 
   /* Sticky header shadow */
   function onScroll() {
@@ -19,13 +18,6 @@
     var open = navMenu.classList.toggle("open");
     navToggle.setAttribute("aria-expanded", String(open));
     navToggle.setAttribute("aria-label", open ? "Zatvori izbornik" : "Otvori izbornik");
-  });
-
-  navLinks.forEach(function (link) {
-    link.addEventListener("click", function () {
-      navMenu.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
-    });
   });
 
   /* Reveal-on-scroll animations */
@@ -47,20 +39,32 @@
     revealEls.forEach(function (el) { el.classList.add("visible"); });
   }
 
-  /* Highlight the nav link for the section in view */
-  var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));
-  function highlightNav() {
-    var pos = window.scrollY + window.innerHeight * 0.35;
-    var currentId = "top";
-    sections.forEach(function (section) {
-      if (section.offsetTop <= pos) currentId = section.id;
-    });
-    navLinks.forEach(function (link) {
-      link.classList.toggle("active", link.getAttribute("href") === "#" + currentId);
+  /* Filtriranje vijesti po kategoriji (stranica Vijesti) */
+  var filterButtons = Array.prototype.slice.call(document.querySelectorAll(".filter-btn"));
+  var newsGrid = document.getElementById("news-grid");
+  if (filterButtons.length && newsGrid) {
+    var articles = Array.prototype.slice.call(newsGrid.querySelectorAll("[data-category]"));
+    var emptyMsg = document.getElementById("filter-empty");
+
+    filterButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        filterButtons.forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+
+        var filter = btn.getAttribute("data-filter");
+        var visible = 0;
+        articles.forEach(function (article) {
+          var show = filter === "all" || article.getAttribute("data-category") === filter;
+          article.hidden = !show;
+          if (show) {
+            visible++;
+            article.classList.add("visible");
+          }
+        });
+        if (emptyMsg) emptyMsg.hidden = visible > 0;
+      });
     });
   }
-  window.addEventListener("scroll", highlightNav, { passive: true });
-  highlightNav();
 
   /* Footer year */
   var yearEl = document.getElementById("year");

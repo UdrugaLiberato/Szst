@@ -222,6 +222,38 @@ a:hover { text-decoration: underline; }
 }
 .hero-wave svg { width: 100%; height: clamp(40px, 6vw, 90px); }
 
+/* ---------- Page hero (unutarnje stranice) ---------- */
+.page-hero {
+  color: #fff;
+  background:
+    radial-gradient(700px 350px at 90% -20%, rgba(42, 157, 244, 0.3), transparent 60%),
+    linear-gradient(160deg, var(--navy) 0%, var(--navy-800) 100%);
+  padding: clamp(2.8rem, 6vw, 4.5rem) 0;
+}
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin-bottom: 0.7rem;
+}
+.page-hero .lead {
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 38rem;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+}
+
+.breadcrumbs {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1.1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.breadcrumbs a { color: var(--gold); }
+.breadcrumbs span:last-child { color: rgba(255, 255, 255, 0.85); }
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-block;
@@ -259,6 +291,15 @@ a:hover { text-decoration: underline; }
 .btn-small:hover { background: #eaf1f8; }
 
 .btn-block { width: 100%; }
+
+.btn-outline {
+  border-color: var(--line);
+  color: var(--navy);
+  background: var(--bg);
+}
+.btn-outline:hover { border-color: var(--azure); }
+
+.section-more { margin-top: 2rem; }
 
 /* ---------- Sections ---------- */
 .section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
@@ -334,8 +375,37 @@ a:hover { text-decoration: underline; }
 .tag-natjecaj { background: #e8f4fe; color: var(--azure-dark); }
 .tag-rezultati { background: #e9f8ef; color: #1b7a43; }
 .tag-sport { background: #fdf3dd; color: #9a6b0a; }
+.tag-izbori { background: #f3ecfd; color: #6b3fb5; }
+.tag-dogadanja { background: #fdeaea; color: #b2403f; }
 
 .news-meta { font-size: 0.83rem; color: var(--muted); }
+
+/* ---------- Filter vijesti ---------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.filter-btn {
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--navy);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.filter-btn:hover { border-color: var(--azure); }
+.filter-btn.active {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+}
+.filter-empty { color: var(--muted); text-align: center; padding: 2rem 0; }
 
 /* ---------- Split sections ---------- */
 .split {
@@ -450,6 +520,107 @@ a:hover { text-decoration: underline; }
 .status-soon { background: #fdf3dd; color: #9a6b0a; }
 .status-closed { background: #f0f2f5; color: var(--muted); }
 
+/* ---------- Sastavnice kartice ---------- */
+.sastavnica-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  color: var(--navy);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.sastavnica-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--azure);
+  text-decoration: none;
+}
+.sastavnica-card h3 { font-size: 1.02rem; line-height: 1.4; flex: 1; }
+.sastavnica-card .card-link {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--azure-dark);
+}
+
+.badge {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+}
+.badge-fakultet { background: #e8f4fe; color: var(--azure-dark); }
+.badge-akademija { background: #f3ecfd; color: #6b3fb5; }
+.badge-odjel { background: #e9f8ef; color: #1b7a43; }
+
+/* ---------- Koraci ---------- */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+.steps li {
+  counter-increment: step;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.7rem 1.5rem 1.5rem;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--azure);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1rem;
+  margin-bottom: 0.9rem;
+}
+.steps h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 0.35rem; }
+.steps p { color: var(--muted); font-size: 0.93rem; }
+
+/* ---------- CTA banner ---------- */
+.cta-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  background:
+    radial-gradient(600px 300px at 100% 0%, rgba(42, 157, 244, 0.3), transparent 60%),
+    linear-gradient(160deg, var(--navy) 0%, var(--navy-800) 100%);
+  color: #fff;
+  border-radius: calc(var(--radius) + 6px);
+  padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.5rem, 4vw, 3rem);
+}
+.cta-banner h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+.cta-banner p { color: rgba(255, 255, 255, 0.8); max-width: 34rem; }
+.cta-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.cta-banner .btn-outline {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+.cta-banner .btn-outline:hover { border-color: #fff; }
+
 /* ---------- Kontakt ---------- */
 .section-dark {
   background:
@@ -558,6 +729,7 @@ a:hover { text-decoration: underline; }
   .grid-3 { grid-template-columns: 1fr 1fr; }
   .split { grid-template-columns: 1fr; }
   .panel-card:nth-child(2) { transform: none; }
+  .steps { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 680px) {
