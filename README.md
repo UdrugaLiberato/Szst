@@ -10,6 +10,8 @@ o vanjskim bibliotekama.
 index.html                      – Početna
 o-nama/                         – O nama
 vijesti/                        – Vijesti (s filtriranjem po kategorijama)
+vijesti/<slug>/                 – pojedinačne objave (blog postovi)
+img/                            – logotip, favicon i og-image
 studentski-predstavnici/        – Studentski predstavnici
 sastavnice/                     – Sastavnice (fakulteti, akademija, odjeli)
 natjecaji/                      – Natječaji
